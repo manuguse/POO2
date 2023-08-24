@@ -1,8 +1,8 @@
 class Interrogratorio():
     
     def __init__(self) -> None:
-        self.pontos = 0
-        self.respostas = []
+        self.__pontos = 0
+        self.__respostas = []
         
     def inicia(self):
         self.pergunta()
@@ -10,46 +10,36 @@ class Interrogratorio():
         print(self.classifica())
         
     def pergunta(self):
+        opcoes = {"s":True, "n":False}
+        
         pergunta1 = input("Telefonou para a vítima? (s/n) ").lower()
-        if pergunta1 == "s":
-            self.respostas.append("True")
-        else:
-            self.respostas.append("False")
+        self.__respostas.append(opcoes[pergunta1])
             
         pergunta2 = input("Esteve no local do crime? (s/n) ").lower()
-        if pergunta2 == "s":
-            self.respostas.append("True")
-        else:
-            self.respostas.append("False")
+        self.__respostas.append(opcoes[pergunta2])
+            
         pergunta3 = input("Mora perto da vítima? (s/n) ").lower()
-        if pergunta3 == "s":
-            self.respostas.append("True")
-        else:
-            self.respostas.append("False")
+        self.__respostas.append(opcoes[pergunta3])
+            
         pergunta4 = input("Devia para a vítima? (s/n) ").lower()
-        if pergunta4 == "s":
-            self.respostas.append("True")
-        else:
-            self.respostas.append("False")
+        self.__respostas.append(opcoes[pergunta4])
+            
         pergunta5 = input("Já trabalhou com a vítima? (s/n) ").lower()
-        if pergunta5 == "s":
-            self.respostas.append("True")
-        else:
-            self.respostas.append("False")
+        self.__respostas.append(opcoes[pergunta5])        
         
     def classifica(self):
-        if self.pontos == 5:
+        if self.__pontos == 5:
             return "Assassino"
-        if self.pontos == 4 or self.pontos == 3:
+        if self.__pontos >= 3:
             return "Cúmplice"
-        if self.pontos == 2:
+        if self.__pontos == 2:
             return "Suspeita"
         return "Inocente"
     
     def calcula(self):
-        for pergunta in self.respostas:
-            if pergunta == "True":
-                self.pontos += 1
+        for pergunta in self.__respostas:
+            if pergunta == True:
+                self.__pontos += 1
                 
 interrogatorio = Interrogratorio()
 interrogatorio.inicia()

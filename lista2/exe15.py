@@ -1,26 +1,26 @@
 class OperacoesValores():
     
     def __init__(self,valores) -> None:
-        self.valores = valores
+        self.__valores = valores
     
     def calcula_qtde(self):
-        return len(self.valores)
+        return len(self.__valores)
         
     def mostra_qtde(self):
         print(self.calcula_qtde())
         
     def mostra_ordem(self):
-        for numero in self.valores:
+        for numero in self.__valores:
             print(f"{numero} ", end="")
         print()
         
     def mostra_inverso(self):
-        for numero in self.valores[::-1]:
+        for numero in self.__valores[::-1]:
             print(f"{numero} ")
             
     def calcula_soma(self):
         soma = 0
-        for numero in self.valores:
+        for numero in self.__valores:
             soma += numero
         return soma
     
@@ -37,14 +37,14 @@ class OperacoesValores():
     def acima_media(self):
         soma = 0
         media = self.calcula_media()
-        for valor in self.valores:
+        for valor in self.__valores:
             if valor > media:
                 soma += 1
         print(soma)
         
     def abaixo_sete(self):
         soma = 0
-        for valor in self.valores:
+        for valor in self.__valores:
             if valor < 7:
                 soma += 1
         print(soma)
