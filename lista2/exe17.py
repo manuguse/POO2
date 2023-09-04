@@ -1,28 +1,28 @@
 class Atleta():
     
     def __init__(self, nome, saltos) -> None:
-        self.nome = nome
-        self.saltos = saltos
-        self.num_saltos = len(self.saltos)
+        self.__nome = nome
+        self.__saltos = saltos
+        self.__num_saltos = len(self.__saltos)
         
     def calcula_media(self):
         soma = 0
-        for salto in self.saltos:
+        for salto in self.__saltos:
             soma += salto
-        media = (soma/self.num_saltos)
+        media = (soma/self.__num_saltos)
         return media
     
     def mostra_saltos(self):
         print("Saltos: ", end="")
-        for i, salto in enumerate(self.saltos):
-            if i == self.num_saltos-1:
+        for i, salto in enumerate(self.__saltos):
+            if i == self.__num_saltos-1:
                 print(f"{salto}")
             else:
                 print(f"{salto} ", end="- ")
             
     def mostra_infos(self):
         print(f"\nResultado final:")
-        print(f"Atleta: {self.nome}")
+        print(f"Atleta: {self.__nome}")
         {self.mostra_saltos()}
         print(f"Média dos saltos: {self.calcula_media():.1f} m")
         print()
