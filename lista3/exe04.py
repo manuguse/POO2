@@ -2,8 +2,8 @@
 
 corredores = {}
 
-num_corredores = 2
-num_voltas = 2
+num_corredores = 3
+num_voltas = 3
 
 for i in range(num_corredores):
     nome = input(f"Insira o nome do corredor {i+1}: ").capitalize()
@@ -23,8 +23,12 @@ def calcula_medias():
 
 def calcula_ordem():
     medias = calcula_medias()
-    for piloto in medias:
-        pass
+    for i, piloto in enumerate(sorted(medias, reverse=True)):
+        print(f"{i+1} - {piloto} - {medias[piloto]:.2f}s")
+
+def calcula_vencedor():
+    vencedor = sorted(calcula_medias(), reverse=True)[0]
+    print(f"Vencedor: {vencedor} - {calcula_medias()[vencedor]:.2f}s")
 
 def calcula_melhor_volta():
     melhor_volta = {}
@@ -37,5 +41,7 @@ def calcula_melhor_volta():
                 melhor_volta["corredor"] = corredor
     print(f"Melhor Volta: {melhor_volta['corredor']} - {melhor_volta['tempo']}s")
 
+print()
 calcula_melhor_volta()
 calcula_ordem()
+calcula_vencedor()

@@ -1,18 +1,28 @@
 import string
 
-texto = open("texto01.txt", "r").read()
+class Frequencia():
+    def __init__(self, texto, palavra) -> None:
+        self.texto = texto
+        self.palavra = palavra
+        self.dicionario = {}
+        self.adiciona_dict()
 
-def cria_dict(texto):
-    dicicionario = {}
-    for palavra in texto.split():
-        palavra = palavra.strip(string.punctuation).lower()
-        if palavra in dicicionario:
-            dicicionario[palavra] += 1
+    def adiciona_dict(self):
+        for palavra in texto.split():
+            palavra = palavra.strip(string.punctuation).lower()
+            if palavra in self.dicionario:
+                self.dicionario[palavra] += 1
+            else:
+                self.dicionario[palavra] = 1
+
+    def mostra_quantidade(self):
+        if self.palavra not in self.dicionario:
+            print("A palavra não aparece no texto")
         else:
-            dicicionario[palavra] = 1
-    return dicicionario
+            print(f"A palavra aparece {self.dicionario[self.palavra]} vezes")
 
-dicionario = cria_dict(texto)
-
-palavra = input('Insira a palavra que deseja contar: ').lower()
-print(f"A palavra aparece {dicionario[palavra]} vezes")
+nome_arquivo = "lista3/texto01.txt"
+palavra_busca = "oi"
+texto = open(nome_arquivo, "r").read()
+freq = Frequencia(texto, palavra_busca)
+freq.mostra_quantidade()
