@@ -1,5 +1,3 @@
-##### INCOMPLETO ######
-
 corredores = {}
 
 num_corredores = 3

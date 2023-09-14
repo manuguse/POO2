@@ -1,28 +1,29 @@
 import string
 
 class Frequencia():
-    def __init__(self, texto, palavra) -> None:
-        self.texto = texto
-        self.palavra = palavra
-        self.dicionario = {}
+    def __init__(self, nome_arquivo, palavra) -> None:
+        self.__texto = open(nome_arquivo, "r").read()
+        self.__palavra = palavra
+        self.__dicionario = {}
         self.adiciona_dict()
 
     def adiciona_dict(self):
-        for palavra in texto.split():
+        for palavra in self.__texto.split():
             palavra = palavra.strip(string.punctuation).lower()
-            if palavra in self.dicionario:
-                self.dicionario[palavra] += 1
+            if palavra in self.__dicionario:
+                self.__dicionario[palavra] += 1
             else:
-                self.dicionario[palavra] = 1
+                self.__dicionario[palavra] = 1
 
     def mostra_quantidade(self):
-        if self.palavra not in self.dicionario:
+        if self.__palavra not in self.__dicionario:
             print("A palavra não aparece no texto")
         else:
-            print(f"A palavra aparece {self.dicionario[self.palavra]} vezes")
+            print(f"A palavra aparece {self.__dicionario[self.__palavra]} vezes")
 
 nome_arquivo = "lista3/texto01.txt"
 palavra_busca = "oi"
-texto = open(nome_arquivo, "r").read()
-freq = Frequencia(texto, palavra_busca)
+freq = Frequencia(nome_arquivo, palavra_busca)
 freq.mostra_quantidade()
+
+# nao sei como fazer para fechar o arquivo nesse caso

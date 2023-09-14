@@ -97,21 +97,21 @@ class TransporteAquatico(Transporte):
     
     def __init__(self, nome, altura, comprimento, carga, velocidade, boca, calado):
         super().__init__(nome, altura, comprimento, carga, velocidade)
-        self.__motor = boca
+        self.__boca = boca
         self.__calado = calado
         
     @property  
     def boca(self):
         return self.__boca
-    
+
     @boca.setter
     def boca(self, boca):
         self.__boca = boca
-        
+
     @property
     def calado(self):
         return self.__calado
-    
+
     @calado.setter
-    def boca(self, calado):
+    def calado(self, calado): 
         self.__calado = calado
