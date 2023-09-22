@@ -7,37 +7,44 @@ from tecnico import Tecnico
 from collections import defaultdict
 
 
+
 class ControladorChamados(AbstractControladorChamados):
-    def __init__(self) -> None:
+    def __init__(self):
         super().__init__()
         self.__chamados = []
-        self.__tiposChamados = []
+        self.__tipoChamados = []
 
     @property
-    def chamados(self) -> list:
+    def chamados(self):
         return self.__chamados
-    
+
     @property
-    def tipoChamados(self) -> list:
-        return self.__tiposChamados
+    def tipoChamados(self):
+        return self.__tipoChamados
+
 
     def totalChamadosPorTipo(self, tipo: TipoChamado) -> int:
-        total = 0
-        for chamado in self.__chamados:
-            if chamado.tipo.codigo == tipo:
-                total += 1
-        return total
+            total = 0
+            for chamado in self.__chamados:
+                if chamado.tipo.codigo == tipo.codigo: 
+                    total+=1
+            return total
     
-    def incluiChamado(self, data: Date, cliente: Cliente, tecnico: Tecnico, titulo: str, 
-                      descricao: str, prioridade: int, tipo: TipoChamado) -> Chamado:
-        
-        for chamado_lista in self.__chamados:
-            if chamado_lista.data == data and chamado_lista.cliente == cliente and chamado_lista.tecnico == tecnico and chamado_lista.tipo == tipo:
-                return
-        self.__chamados.append(Cliente(data, cliente, tecnico, titulo, descricao, prioridade, tipo))
+    def incluiChamado(self, data: Date, cliente: Cliente, tecnico: Tecnico, titulo: str, descricao: str, prioridade: int, tipo: TipoChamado) -> Chamado:
+        if isinstance(data, Date) and isinstance(cliente,Cliente) and isinstance(tecnico,Tecnico) and isinstance(tipo,TipoChamado):
+            for chamado in self.chamados:
+                if chamado.data == data and chamado.cliente == cliente and chamado.tecnico == tecnico and chamado.tipo == tipo:
+                    return None
+            chamado = Chamado(data,cliente,tecnico,titulo,descricao,prioridade,tipo)
+            self.chamados.append(chamado)
+            return chamado
 
     def incluiTipoChamado(self, codigo: int, nome: str, descricao: str) -> TipoChamado:
-        for chamado_lista in self.__chamados:
-            if chamado_lista.codigo == codigo:
-                return
-        self.__tiposChamados.append(TipoChamado(codigo, nome, descricao))
+        for tipochamado in self.tipoChamados:
+            if tipochamado.codigo == codigo:
+                return None
+               
+        tipo = TipoChamado(codigo,descricao,nome)
+        self.tipoChamados.append(tipo)
+        return tipo
+        

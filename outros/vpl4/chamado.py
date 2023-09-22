@@ -6,8 +6,7 @@ from tecnico import Tecnico
 
 
 class Chamado(AbstractChamado):
-    def __init__(
-            self,
+    def __init__(self,
             data: Date,
             cliente: Cliente,
             tecnico: Tecnico,
@@ -15,7 +14,6 @@ class Chamado(AbstractChamado):
             descricao: str,
             prioridade: int,
             tipo: TipoChamado):
-        
         self.__data = data
         self.__cliente = cliente
         self.__tecnico = tecnico
@@ -23,7 +21,7 @@ class Chamado(AbstractChamado):
         self.__descricao = descricao
         self.__prioridade = prioridade
         self.__tipo = tipo
-
+        
     @property
     def cliente(self) -> Cliente:
         return self.__cliente

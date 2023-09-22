@@ -3,9 +3,9 @@ from abstractTipoChamado import AbstractTipoChamado
 
 class TipoChamado(AbstractTipoChamado):
     def __init__(self, codigo: int, descricao: str, nome: str):
-        self.codigo = codigo
-        self.descricao = descricao
-        self.nome = nome
+        self.__codigo = codigo
+        self.__descricao = descricao
+        self.__nome = nome
 
     @property
     def codigo(self) -> int:
